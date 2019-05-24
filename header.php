@@ -29,7 +29,8 @@ session_start();
 echo '<div><h1>Hotel Reservation System</h1></div>';
 
 # Create navigation links
-if (isset($_SESSION['idUser'])) {
+//$_SESSION['user_id'] = "2";
+if (isset($_SESSION['user_id'])) {
     echo '<p><button type="button"><a href="home.php">Home</a></button> |'
          . ' <button type="button"><a href="profile.php">My Profile</a></button> |'
          . ' <button type="button"><a href="reservation_list.php">My Reservations</a></button> |'
