@@ -9,13 +9,13 @@ include_once 'header.php';
 
 echo '<h2>My Reservations</h2>';
 
-if (isset($_SESSION['idUser'])) {
-    $idUser = $_SESSION['idUser'];
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
     
     # Open database connection.
     require 'connect_db.php';
     
-    $q = "SELECT * FROM reservation WHERE idUser = $idUser";
+    $q = "SELECT * FROM reservation WHERE user_id = $user_id";
     $r = mysqli_query($dbc, $q);
     if (mysqli_num_rows($r) > 0) {
         echo '<table border="1" cellpadding="3"><tr><th>Reservation ID</th><th>Room</th><th>Date</th><th></th></tr>';

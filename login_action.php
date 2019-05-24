@@ -18,7 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = mysqli_real_escape_string($dbc, trim($_POST['email']));
     $password = mysqli_real_escape_string($dbc, trim($_POST['password']));
 
-    $q = "SELECT user_id, first_name, last_name FROM users WHERE email='$email' AND password=SHA1('$password')";
+    // $q = "SELECT user_id, first_name, last_name FROM users WHERE email='$email' AND password=SHA1('$password')";
+
+    $password_hash = sha1($password);
+    $q = "SELECT user_id, first_name, last_name FROM users WHERE email='$email' AND password='$password_hash'";
+
     $r = mysqli_query($dbc, $q);
     if (mysqli_num_rows($r) == 1) {
         $login_error = false;

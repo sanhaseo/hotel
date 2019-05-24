@@ -19,7 +19,7 @@ if (isset($_POST['room_id']) && isset($_POST['date'])) {
         $capacity = $row2['capacity'];
         $price = $row2['price'];
         
-        $q = "SELECT * FROM reservation WHERE room_id = $room_id AND date = '$date'";
+        $q = "SELECT * FROM reservation WHERE room_id = $room_id AND reservation_date = '$date'";
         $r = mysqli_query($dbc, $q);
         
         if (mysqli_num_rows($r) > 0) {

@@ -4,7 +4,7 @@
 session_start();
 
 # Redirect if not logged in.
-if (!isset($_SESSION['idUser'])) {
+if (!isset($_SESSION['user_id'])) {
     require 'login_tools.php';
     load();
 }
@@ -14,10 +14,10 @@ include_once 'header.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require 'connect_db.php';
     
-    $idUser = $_SESSION['idUser'];
+    $user_id = $_SESSION['user_id'];
     $reservation_id = $_GET['reservation_id'];
     
-    $q = "SELECT * FROM userTable WHERE idUser = $idUser";
+    $q = "SELECT * FROM users WHERE user_id = $user_id";
     $r = mysqli_query($dbc, $q);
     $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
     

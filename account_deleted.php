@@ -4,23 +4,23 @@
 session_start();
 
 # Redirect if not logged in.
-if (!isset($_SESSION['idUser'])) {
+if (!isset($_SESSION['user_id'])) {
     require 'login_tools.php';
     load();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $idUser = $_GET['idUser'];
+    $user_id = $_GET['user_id'];
     
     require 'connect_db.php';
     
-    $q = "DELETE FROM reservation WHERE idUser = $idUser";
+    $q = "DELETE FROM reservation WHERE user_id = $user_id";
     if (!mysqli_query($dbc, $q)) {
         include_once 'header.php';
         echo '<h2>Error!</h2><p>Query was not successful.</p>';
     }
     else {
-        $q = "DELETE FROM userTable WHERE idUser = $idUser";
+        $q = "DELETE FROM users WHERE user_id = $user_id";
         if (mysqli_query($dbc, $q)) {
             
             # Clear existing variables.

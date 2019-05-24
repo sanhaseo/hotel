@@ -1,0 +1,13 @@
+- add client side input validation (html form validation)
+
+- reservation table :
+    - use DATE type instead of CHAR for reservation_date
+    - make user_id and room_id foreign keys (cascade on delete)
+
+- register.php : add register_action.php
+
+- add html doctype to each page
+
+- clean up code and add comments
+
+- more..

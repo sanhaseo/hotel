@@ -91,8 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // If not, insert user into the users table.
     if (mysqli_num_rows($r) == 0) {
+        // $q = "INSERT INTO users (first_name, last_name, email, password, reg_date) ".
+        //         "VALUES ('$first_name', '$last_name', '$email', SHA1('$password'), NOW())";
+
+        $password_hash = sha1($password);
         $q = "INSERT INTO users (first_name, last_name, email, password, reg_date) ".
-                "VALUES ('$first_name', '$last_name', '$email', SHA1('$password'), NOW())";
+                "VALUES ('$first_name', '$last_name', '$email', '$password_hash', NOW())";
+
         $r = mysqli_query($dbc, $q);
         if ($r) {
             echo '<h2>Registered!</h2><p>You are now registered.</p>';
@@ -134,11 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </tr>
     <tr>
         <td style="text-align: left">Password </td>
-        <td><input type="password" name="pass1" size="20" value="<?php if (isset($_POST['password1'])) echo $_POST['password1']; ?>" /></td>
+        <td><input type="password" name="password1" size="20" value="<?php if (isset($_POST['password1'])) echo $_POST['password1']; ?>" /></td>
     </tr>
     <tr>
         <td style="text-align: left">Confirm Password </td>
-        <td><input type="password" name="pass2" size="20" value="<?php if (isset($_POST['password'])) echo $_POST['password2']; ?>" /></td>
+        <td><input type="password" name="password2" size="20" value="<?php if (isset($_POST['password'])) echo $_POST['password2']; ?>" /></td>
     </tr>
     </table>
     <p><input type="submit" value="Register" /></p>
